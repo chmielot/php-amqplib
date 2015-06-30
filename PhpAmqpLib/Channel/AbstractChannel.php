@@ -220,6 +220,9 @@ class AbstractChannel
      */
     protected function send_method_frame($method_sig, $args = '')
     {
+        if (!$this->connection) {
+            throw new Exception('No connection!');
+        }
         $this->connection->send_channel_method_frame($this->channel_id, $method_sig, $args);
     }
 
